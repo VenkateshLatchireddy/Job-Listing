@@ -1,0 +1,113 @@
+.jobstation-job-card {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  width: 80%; /* Make the card width responsive */
+  max-width: 1200px; /* Max width to prevent stretching */
+  margin: 40px auto; /* Center the card horizontally */
+  box-sizing: border-box; /* Include padding in the width */
+  box-shadow: 0 4px 8px rgba(237, 83, 83, 0.6); /* Red shadow */
+}
+
+.jobstation-job-card-container {
+  display: grid;
+  grid-template-columns: 1fr 3fr 2fr;
+  grid-gap: 20px;
+  width: 100%;
+}
+
+.jobstation-company-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.jobstation-company-logo {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+}
+
+.jobstation-job-details-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.jobstation-job-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.jobstation-job-info {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+.jobstation-work-info {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+.jobstation-detail-item {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+  font-size: 10px;
+}
+
+.jobstation-detail-icon {
+  margin-right: 8px;
+  height: 15px;
+  width: 15px;
+}
+
+.jobstation-job-info-bottom {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.jobstation-skills-container {
+  display: flex;
+  flex-direction: column; /* Arrange skills and button vertically */
+  justify-content: center; /* Center the content vertically */
+  align-items: center; /* Center the content horizontally */
+  gap: 16px; /* Space between skills and button */
+}
+
+.jobstation-skills-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center; /* Center the skills horizontally */
+}
+
+.jobstation-skill-tag {
+  padding: 6px 12px;
+  background-color: #e0e0e0;
+  border-radius: 20px;
+}
+
+.jobstation-view-details-btn {
+  padding: 10px 20px;
+  background-color: #e32727;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.jobstation-view-details-btn:hover {
+  background-color: #0056b3;
+}
+
+.jobstation-location-info {
+  /* Add styling here if needed */
+}

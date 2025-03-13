@@ -1,0 +1,163 @@
+/* General styles */
+.register-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding: 0 1.5rem;
+  background-color: #fff;
+  box-sizing: border-box;
+  width: 100%;
+  overflow: hidden;
+  gap: 3rem;
+}
+
+/* Left column - Registration form */
+.registration-form-container {
+  flex: 1;
+  max-width: 300px; /* Reduced width */
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 6px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.registration-form-container h2 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.registration-form-container p {
+  margin: 0 0 4px 0;
+  font-size: 13px;
+}
+
+/* Input field styling */
+.input-group {
+  margin-bottom: 0.7rem;
+  width: 100%;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.6rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  color: #333;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.input-group input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+}
+
+/* Terms and checkbox styling */
+.terms-container {
+  display: flex;
+  align-items: center; /* Ensures both items align properly */
+  font-size: 12px;
+  gap: 5px;
+  flex-wrap: nowrap; /* Prevents wrapping */
+  max-width: 100%;
+}
+
+.terms-text {
+  white-space: normal;
+  color: #333;
+  line-height: 1.2;
+  font-size: 12px; /* Match font size */
+}
+
+
+.checkbox {
+  width: 10px;
+  height: 10px;
+  cursor: pointer;
+}
+
+
+
+/* Create account button */
+.create-account-button {
+  width: 100%;
+  padding: 0.6rem;
+  background-color: #cb0808;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 8px;
+}
+
+.create-account-button:hover {
+  background-color: #0056b3;
+}
+
+/* Sign-in link */
+.signin-text {
+  text-align: center;
+  font-size: 0.8rem;
+  color: #666;
+  margin-top: 0.8rem;
+}
+
+.signin-text a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.signin-text a:hover {
+  text-decoration: underline;
+}
+
+/* Right column - Image */
+.registration-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 280px; /* Reduced width */
+}
+
+.registration-image img {
+  width: 100%;
+  max-width: 280px;
+  border-radius: 8px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .register-page-container {
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      height: auto;
+      padding: 1rem 0;
+      gap: 0.8rem;
+  }
+
+  .registration-form-container {
+      width: 85%;
+      max-width: 300px;
+      margin-bottom: 1rem;
+  }
+
+  .registration-image {
+      width: 85%;
+      max-width: 280px;
+  }
+
+  .terms-container {
+      justify-content: center;
+  }
+}

@@ -1,0 +1,110 @@
+.search-filter-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  width: 80%;
+  max-width: 1000px;
+  margin: 0 auto;
+  margin-top: 20px;
+  box-shadow: 0 4px 8px rgba(237, 83, 83, 0.6); /* Red shadow */
+}
+
+.search-input {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Second Row - Flex for Dropdown, Selected Skills, Buttons */
+.filter-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.skills-dropdown {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  flex-basis: 200px;
+}
+
+.selected-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 500px;
+  flex-basis: 300px;
+}
+
+.skill-chip-container {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+.skill-chip {
+  background-color: #007bff;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 15px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.remove-skill {
+  margin-left: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  color: #ff4d4d; /* Red color for the remove icon */
+}
+
+.buttons-container {
+  display: flex;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.apply-filter-btn,
+.add-job-btn {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: background 0.3s;
+}
+
+.apply-filter-btn:hover,
+.add-job-btn:hover {
+  background-color: #0056b3;
+}
+
+.clear-filters,
+.clear-skills-btn {
+  color: red;
+  font-size: 16px;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+.clear-skills-btn {
+  background-color: #ffdbdb;
+  border: 1px solid #ff4d4d;
+  border-radius: 5px;
+  padding: 5px 10px;
+  font-size: 14px;
+}
+
+.clear-skills-btn:hover {
+  background-color: #ff9999;
+}

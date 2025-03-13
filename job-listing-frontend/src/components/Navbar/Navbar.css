@@ -1,0 +1,65 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background-color: rgba(237,83,83,255);
+    color: white;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+ 
+  }
+  
+  .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  
+  .login-btn {
+    background-color:transparent;
+    color: rgb(247, 243, 243);
+    border-color: #fff;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+   
+  }
+  .logout-dashboard-btn {
+    background-color:transparent;
+    border: none;
+    color: #fff;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+   
+  }
+  .register-btn {
+    background-color: rgb(240, 236, 236);
+    border: none;
+    color: #b80f0f;
+    padding: 8px 15px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+  }
+  
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .profile-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+  
