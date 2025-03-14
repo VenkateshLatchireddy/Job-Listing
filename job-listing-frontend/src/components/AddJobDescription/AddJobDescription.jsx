@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import axios from 'axios';  // Make sure axios is imported
 import "./AddJobDescription.css";
+import { useNavigate } from "react-router-dom"; // Import useNavigate at the top
+
+
+
 
 import JobListingimg from "../../../src/assets/job-listing2.jpg";
 
@@ -19,6 +23,8 @@ const skillsList = [
 ];
 
 const AddJobDescription = () => {
+  const navigate = useNavigate();
+  const userId = localStorage.getItem("userId");
   const [selectedSkills, setSelectedSkills] = useState([]);
   const [formData, setFormData] = useState({
     companyName: "",
@@ -53,23 +59,17 @@ const AddJobDescription = () => {
     setFormData({ ...formData, [name]: value });
   };
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");  // Clear previous error messages
 
-    // Clear any previous error
-    setError("");
-
-    // Get the token from localStorage
     const token = localStorage.getItem("accessToken");
-
-    // Check if token exists
     if (!token) {
-        console.error("No access token found. Please log in.");
-        setError("Authentication error. Please log in again.");
+        window.alert("Authentication error. Please log in again.");
         return;
     }
 
-    // Prepare job data, converting skillsRequired array to a comma-separated string
     const jobData = {
         companyName: formData.companyName,
         companyLogo: formData.companyLogo,
@@ -80,10 +80,10 @@ const AddJobDescription = () => {
         location: formData.location,
         jobDescription: formData.jobDescription,
         aboutCompany: formData.aboutCompany,
-        // Convert selectedSkills array to a comma-separated string
         skillsRequired: Array.isArray(selectedSkills) ? selectedSkills.join(', ') : selectedSkills,
         additionalInfo: formData.additionalInfo,
         hiringCount: formData.hiringCount,
+        userId: userId || "",
     };
 
     try {
@@ -91,7 +91,7 @@ const AddJobDescription = () => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`, // Ensure correct format
+                "Authorization": `Bearer ${token}`,
             },
             body: JSON.stringify(jobData),
         });
@@ -100,19 +100,24 @@ const AddJobDescription = () => {
 
         if (response.ok) {
             console.log("Job added successfully!", data);
+            window.alert("Job added successfully!");
+            navigate("/");  // Redirect to Home Page
         } else {
-            setError(data.message || "Failed to add job");
+            const errorMessage = data.message || "Please fill the form with correct data.";
+            window.alert(errorMessage);  // Show error in an alert
             console.log("Response Data:", data);
             console.log("Response Status:", response.status);
         }
     } catch (err) {
-        setError("Server error. Please try again.");
+        window.alert("Server error. Please try again.");  // Alert for server error
         console.error("Error:", err);
     }
 };
 
 
-
+  const handleCancel = () => {
+    navigate(-1);  // Go back to the previous page
+};
 
   return (
     <div className="add-job-description">
@@ -293,10 +298,14 @@ const AddJobDescription = () => {
               <option value="100+">100+</option>
             </select>
           </div>
-
-          <div className="form-buttons">
-            <button type="submit" className="btn-add-job">+ Add Job</button>
-          </div>
+          <div className="btn-container">
+                <div className="form-buttons">
+                    <button type="button" className="btn-cancel" onClick={handleCancel}>Cancel</button>
+                </div>
+                <div className="form-buttons">
+                    <button type="submit" className="btn-add-job">+ Add Job</button>
+                </div>
+            </div>
         </form>
       </div>
 

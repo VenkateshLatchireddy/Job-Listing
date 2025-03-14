@@ -91,7 +91,7 @@
 
 .jobstation-skill-tag {
   padding: 6px 12px;
-  background-color: #e0e0e0;
+  background-color: #feeeee;
   border-radius: 20px;
 }
 
@@ -109,5 +109,35 @@
 }
 
 .jobstation-location-info {
-  /* Add styling here if needed */
+  margin-top: 10px;
+}
+.custom-button {
+  display: flex;
+  width: 200px; /* Adjust width as needed */
+  height: 40px; /* Adjust height as needed */
+  border: none;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+}
+
+.button-text, .cross-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.button-text {
+  flex: 0 0 80%; /* 80% width */
+  background-color: #4CAF50; /* Color for 80% part */
+  color: white;
+}
+
+.cross-mark {
+  flex: 0 0 20%; /* 20% width */
+  background-color: #f44336; /* Color for 20% part */
+  color: white;
+  font-size: 16px; /* Adjust cross mark size */
 }

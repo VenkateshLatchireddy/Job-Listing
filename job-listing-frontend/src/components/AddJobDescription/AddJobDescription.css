@@ -110,13 +110,6 @@
   border-radius: 5px;
   cursor: pointer;
 }
-
-.btn-cancel {
-  background: transparent;
-  border: 1px solid #d9534f;
-  color: #d9534f;
-}
-
 .btn-add-job {
   background: #d9534f;
   color: #fff;
@@ -143,21 +136,14 @@
   border-radius: 10px;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 1024px) {
-  .add-job-description {
-    flex-direction: column;
-    align-items: center;
-    height: auto;
-  }
-
-  .form-container, .image-container {
-    width: 100%;
-    height: auto;
-  }
-
-  .form-buttons {
-    flex-direction: column;
-    gap: 10px;
-  }
+.btn-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  gap: 10px;
+}
+.form-buttons-cancel{
+  background: transparent;
+  border: 1px solid #d9534f;
+  color: #d9534f;
 }

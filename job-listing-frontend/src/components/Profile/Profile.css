@@ -1,0 +1,95 @@
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+  
+    background-color: #f7f9fc; /* Soft off-white background */
+  }
+  .profile-card {
+    width: 350px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15);
+  }
+  
+  .profile-header h2 {
+    font-size: 28px;
+    margin: 10px 0;
+    color: #3498db; /* Soft blue for the name */
+  }
+  
+  .profile-header p {
+    font-size: 16px;
+    color: #f39c12; /* Warm yellow for the role */
+    margin: 5px 0;
+  }
+  
+  .profile-details {
+    margin-top: 20px;
+    text-align: left;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .detail {
+    margin: 15px 0;
+  }
+  
+  .detail label {
+    font-weight: bold;
+    color: #2c3e50; /* Darker gray for labels */
+    font-size: 16px;
+  }
+  
+  .detail span {
+    display: block;
+    margin-top: 5px;
+    color: #2ecc71; /* Fresh green for values */
+    font-size: 14px;
+  }
+  
+  .detail span:first-child {
+    color: #e74c3c; /* Red for email */
+  }
+  
+  .detail span:last-child {
+    color: #9b59b6; /* Purple for timestamps */
+  }
+  
+  /* Gradient background for profile card */
+  .profile-card {
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4, #a18cd1);
+
+    color: white;
+  }
+  
+  .profile-card .profile-header h2,
+  .profile-card .profile-header p {
+    color: #fff;
+  }
+  
+  .profile-header {
+    background-color: #9b59b6; /* Purple background for header */
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+  }
+  
+  /* Profile image styling if needed */
+  .profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    object-fit: cover;
+    border: 5px solid #fff; /* White border around image */
+  }
+  

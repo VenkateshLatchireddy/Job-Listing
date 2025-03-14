@@ -1,52 +1,69 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import axios from 'axios';
-import { Clock, MapPin, IndianRupee, Calendar, Building2 } from 'lucide-react';
-import './JobDetails.css';
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { Clock, MapPin, IndianRupee, Pencil } from "lucide-react";
+import "./JobDetails.css";
 
-const SkillBadge = ({ skill }) => (
-  <span className="jobdetails-skill-badge">{skill}</span> // Make sure to match the class name
-);
+const SkillBadge = ({ skill }) => <span className="jobdetails-skill-badge">{skill}</span>;
 
 function JobDetails() {
   const { id } = useParams();
   const [job, setJob] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [currentUserId, setCurrentUserId] = useState(null);
 
   useEffect(() => {
+    // 🔹 Get logged-in user ID from local storage
+    const userId = localStorage.getItem("userId");
+    setCurrentUserId(userId);
+
+    // 🔹 Fetch job details
     axios.get(`http://localhost:5000/api/jobs/${id}`)
-      .then(response => {
+      .then((response) => {
+        console.log(response.data);  // Log to check the response
         setJob(response.data);
         setLoading(false);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error fetching job details:", error);
         setLoading(false);
       });
-  }, [id]);
+}, [id]);
+
 
   if (loading) return <div>Loading...</div>;
   if (!job) return <div>Job not found</div>;
 
-  return (
-    <div className="jobdetails-wrapper">
-      <div className="jobdetails-container">
-        <div className="jobdetails-card">
-          <div className="jobdetails-header">
-            <div className="jobdetails-meta">
-              <Clock className="jobdetails-icon" />
-              <span>Posted {new Date(job.createdAt).toLocaleDateString()}</span>
-              <span className="jobdetails-separator">•</span>
-              <span>{job.jobType}</span>
-            </div>
-            <h1 className="jobdetails-title">{job.jobPosition}</h1>
-            <div className="jobdetails-location">
-              <MapPin className="jobdetails-icon" />
-              <span>{job.location}</span>
-            </div>
-          </div>
+  // 🔹 Check if logged-in user is the job owner
+  const isOwner = currentUserId && currentUserId === job.userId;
 
-          <div className="jobdetails-section">
+
+  return (
+                <div className="jobdetails-wrapper">
+                  <div className="jobdetails-container">
+                    <div className="jobdetails-card">
+                    <div className="jobdetails-header">
+              <div className="jobdetails-content">
+                <div className="jobdetails-meta">
+                  <Clock className="jobdetails-icon" />
+                  <span>Posted {new Date(job.createdAt).toLocaleDateString()}</span>
+                  <span className="jobdetails-separator">•</span>
+                  <span>{job.jobType}</span>
+                </div>
+                <h1 className="jobdetails-title">{job.jobPosition}</h1>
+                <div className="jobdetails-location">
+                  <MapPin className="jobdetails-icon" />
+                  <span>{job.location}</span>
+                </div>
+              </div>
+  
+              {isOwner && (
+                <button className="btn-edit-">
+                  Edit Job
+                </button>
+              )}
+            </div>
+            <div className="jobdetails-section">
             <div className="jobdetails-grid">
               <div className="jobdetails-detail">
                 <p className="jobdetails-detail-label">Monthly Salary:</p>
@@ -79,7 +96,7 @@ function JobDetails() {
           <div className="skills-required">
             <h2>Skills Required</h2>
             <div className="jobdetails-skills-container">
-              {job.skillsRequired.split(',').map((skill, index) => (
+              {job.skillsRequired.split(",").map((skill, index) => (
                 <SkillBadge key={index} skill={skill} />
               ))}
             </div>

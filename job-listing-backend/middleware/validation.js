@@ -6,10 +6,6 @@ const userValidation = [
   body('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),
 ];
 
-
-
-
-
 const jobValidation = [
   body('companyName').not().isEmpty().withMessage('Company name is required'),
   body('companyLogo').optional().isString().withMessage('Company logo must be a string'),

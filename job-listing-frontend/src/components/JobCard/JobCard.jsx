@@ -5,6 +5,7 @@ import './JobCard.css';
 import indianflag from "../../assets/indian-flag.avif";
 
 const JobCard = ({
+
   id,
   companyName,
   companyLogo,
@@ -22,7 +23,9 @@ const JobCard = ({
 
   // Assuming skills are comma-separated
   const skills = skillsRequired.split(',');
+  console.log("JobType in JobCard:", jobType);
 
+  
   return (
     <div className="jobstation-job-card">
       <div className="jobstation-job-card-container">
@@ -48,12 +51,12 @@ const JobCard = ({
                 <div className="jobstation-work-info">
                   <div className="jobstation-detail-item">
                     <Briefcase className="jobstation-detail-icon" />
-                    <span className="jobstation-detail-text">{workType}</span>
+                    <span className="jobstation-detail-text">{remote_office}</span>
                   </div>
                   <div className="jobstation-detail-item">
                     <Clock className="jobstation-detail-icon" />
-                    <span className="jobstation-detail-text">{jobType}</span>
-                  </div>
+                    <span className="jobstation-detail-text">{jobType || 'Not Available'}</span>
+                    </div>
                 </div>
               </div>
             </div>

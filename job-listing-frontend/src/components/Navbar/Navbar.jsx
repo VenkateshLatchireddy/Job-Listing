@@ -13,11 +13,13 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
 
   // Handle logout
   const handleLogout = () => {
-    // Remove token from localStorage to log out the user
-    localStorage.removeItem("token");
-    setIsLoggedIn(false); // Update state to reflect logged out status
-    navigate("/login"); // Redirect to login page
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("userId");
+    setIsLoggedIn(false);
+    navigate("/login", { replace: true }); // 🔥 Redirect to login page
   };
+  
+
 
   // Handle dashboard redirect
   const handleDashboardRedirect = () => {
@@ -32,7 +34,7 @@ const Navbar = ({ isLoggedIn, setIsLoggedIn }) => {
           <>
             <button className="logout-dashboard-btn" onClick={handleLogout}>Logout</button>
             <button className="logout-dashboard-btn" onClick={handleDashboardRedirect}>Dashboard</button>
-            <img className="profile-icon" src={ProfileIcon} alt="Profile" />
+            <img onClick={() => navigate("/profile")} className="profile-icon" src={ProfileIcon} alt="Profile" />
           </>
         ) : (
           <>

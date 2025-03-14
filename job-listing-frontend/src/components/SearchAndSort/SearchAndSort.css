@@ -50,20 +50,37 @@
 }
 
 .skill-chip {
-  background-color: #007bff;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 15px;
-  font-size: 14px;
+  flex: 0 0 80%; /* 80% width */
+  background-color: #feeeee; /* Color for 80% part */
+  color: black;
   display: flex;
   align-items: center;
 }
+.skill-chip, .remove-skill{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+
+.custom-button- {
+  display: flex;
+  width: 100px; /* Adjust width as needed */
+  height: 20px; /* Adjust height as needed */
+  border: none;
+  max-height: 40px;
+  border-radius: 5px;
+  overflow: hidden;
+  cursor: pointer;
+  padding: 0;
+}
 
 .remove-skill {
-  margin-left: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  color: #ff4d4d; /* Red color for the remove icon */
+  flex: 0 0 20%; /* 20% width */
+  background-color: #f44336; /* Color for 20% part */
+  color: white;
+  font-size: 16px; /* Adjust cross mark size *//* Red color for the remove icon */
 }
 
 .buttons-container {
@@ -74,7 +91,7 @@
 
 .apply-filter-btn,
 .add-job-btn {
-  background-color: #007bff;
+  background-color: #e32727;
   color: white;
   border: none;
   padding: 8px 12px;
@@ -97,14 +114,3 @@
   margin-left: 10px;
 }
 
-.clear-skills-btn {
-  background-color: #ffdbdb;
-  border: 1px solid #ff4d4d;
-  border-radius: 5px;
-  padding: 5px 10px;
-  font-size: 14px;
-}
-
-.clear-skills-btn:hover {
-  background-color: #ff9999;
-}

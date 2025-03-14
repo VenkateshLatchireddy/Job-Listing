@@ -56,31 +56,66 @@ router.post('/jobs', [auth, jobValidation], async (req, res) => {
 
 
 // GET route to fetch all jobs
+// GET route to fetch jobs with search, filtering, sorting, and pagination
+const { Op } = require('sequelize'); // Import Sequelize operators
+
 router.get('/jobs', async (req, res) => {
   try {
-    console.log("Fetching jobs...");
-    const jobs = await Job.findAll(); // Get all jobs from DB
-    console.log("Jobs fetched:", jobs);
-    res.json(jobs); // Ensure all the fields (including new ones) are returned
+    const { searchTerm, skills } = req.query;
+    
+    let queryOptions = { where: {}, order: [] };
+
+    // 🔍 Search by job title or company name
+    if (searchTerm) {
+      queryOptions.where[Op.or] = [
+        { jobPosition: { [Op.like]: `%${searchTerm}%` } },
+        { companyName: { [Op.like]: `%${searchTerm}%` } }
+      ];
+    }
+
+    // 🎯 Filter by skills (if selected)
+    if (skills) {
+      const skillsArray = skills.split(",");
+      queryOptions.where.skillsRequired = { [Op.or]: skillsArray.map(skill => ({ [Op.like]: `%${skill}%` })) };
+    }
+
+    const jobs = await Job.findAll(queryOptions);
+    res.json({ jobs });
   } catch (err) {
-    console.error("Error fetching jobs:", err.message);  // Log the error message
+    console.error("Error fetching jobs:", err.message);
     res.status(500).send('Server error');
   }
 });
 
+
 // GET route to fetch a single job by ID
-router.get('/jobs/:id', async (req, res) => {
+router.get("/jobs/:id", async (req, res) => {
   try {
-    const job = await Job.findByPk(req.params.id); // Find job by ID
-    if (!job) {
-      return res.status(404).json({ msg: 'Job not found' }); // Handle case where job doesn't exist
-    }
-    res.json(job); // Return the full job object with all details
+    const job = await Job.findOne({
+      where: { id: req.params.id },
+      attributes: [
+        "id",
+        "userId", // 🔥 Ensure this is included
+        "companyName",
+        "jobPosition",
+        "monthlySalary",
+        "jobType",
+        "location",
+        "jobDescription",
+        "skillsRequired",
+        "createdAt",
+      ],
+    });
+
+    if (!job) return res.status(404).json({ message: "Job not found" });
+
+    res.json(job);
   } catch (err) {
-    console.error("Error fetching job details:", err.message); // Log error details
-    res.status(500).send('Server error');
+    console.error(err);
+    res.status(500).send("Server error");
   }
 });
+
 
 // PUT route to update a job listing
 router.put('/jobs/:id', [auth, jobValidation], async (req, res) => {

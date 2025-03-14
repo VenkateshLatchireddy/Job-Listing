@@ -2,53 +2,58 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./SearchAndSort.css";
 
-const skillsOptions = ["HTML", "CSS", "SQLite", "Python", "JavaScript", "Node Js", "React Js", "Express Js"];
+const skillsOptions = [
+  "HTML", "CSS", "React.js", "JavaScript", "Node.js", "MySQL", "Express.js",
+  "REST APIs", "Figma", "Adobe XD", "Wireframing", "Prototyping", "MongoDB",
+  "TypeScript", "Redux", "GraphQL", "Bootstrap", "Tailwind CSS", "Material UI",
+  "Git", "GitHub", "Docker", "Kubernetes", "AWS", "Firebase", "PostgreSQL",
+  "Jest", "Cypress", "CI/CD", "WebSockets", "Next.js", "Flutter", "React Native",
+  "Android Development", "iOS Development", "UI/UX Design", "Agile Methodology",
+  "Scrum", "JIRA", "Trello", "Web Performance Optimization", "SEO", "Linux",
+  "Python", "Django", "Flask", "PHP", "Laravel", "C++", "C#", ".NET", "Java",
+  "Spring Boot", "Go", "Rust", "Cybersecurity", "Penetration Testing",
+  "Blockchain", "Solidity", "Machine Learning", "Data Science", "TensorFlow",
+  "PyTorch", "NLP", "Big Data", "Hadoop", "Power BI", "Tableau"
+];
 
 const SearchAndSort = ({ isLoggedIn, onFilter }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedSkills, setSelectedSkills] = useState([]);
   const navigate = useNavigate();
 
-  // Handle search input change
   const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
+    const newSearchTerm = e.target.value;
+    setSearchTerm(newSearchTerm);
+    onFilter(newSearchTerm, selectedSkills); // 🔥 Call `onFilter` after updating search term
   };
 
-  // Handle skill selection
   const handleSkillChange = (e) => {
     const selectedSkill = e.target.value;
     if (selectedSkill && !selectedSkills.includes(selectedSkill)) {
-      setSelectedSkills([...selectedSkills, selectedSkill]);
+      const updatedSkills = [...selectedSkills, selectedSkill];
+      setSelectedSkills(updatedSkills);
+      onFilter(searchTerm, updatedSkills); // 🔥 Call `onFilter` after updating skills
     }
     e.target.value = "";
   };
 
-  // Remove a skill
   const removeSkill = (skillIndex) => {
-    setSelectedSkills(selectedSkills.filter((_, index) => index !== skillIndex));
+    const updatedSkills = selectedSkills.filter((_, index) => index !== skillIndex);
+    setSelectedSkills(updatedSkills);
+    onFilter(searchTerm, updatedSkills); // 🔥 Call `onFilter` after removing a skill
   };
 
-  // Clear selected skills
-  const clearSkills = () => {
-    setSelectedSkills([]);
-  };
-
-  // Clear filters
   const clearFilters = () => {
     setSearchTerm("");
     setSelectedSkills([]);
-  };
-
-  // Redirect to Add Job Page
-  const handleAddJob = () => {
-    navigate("/add-job"); // Make sure your route for AddJobDetails is '/add-job'
+    onFilter("", []); // 🔥 Call `onFilter` with empty values
   };
 
   return (
     <div className="search-filter-container">
       <input
         type="text"
-        placeholder="Search jobs by title, company, or keywords..."
+        placeholder="Search jobs..."
         value={searchTerm}
         onChange={handleSearchChange}
         className="search-input"
@@ -58,30 +63,22 @@ const SearchAndSort = ({ isLoggedIn, onFilter }) => {
         <select className="skills-dropdown" onChange={handleSkillChange}>
           <option value="">Select Skills</option>
           {skillsOptions.map((skill, index) => (
-            <option key={index} value={skill}>
-              {skill}
-            </option>
+            <option key={index} value={skill}>{skill}</option>
           ))}
         </select>
 
         <div className="selected-skills">
           {selectedSkills.map((skill, index) => (
-            <span key={index} className="skill-chip-container">
-              <span className="skill-chip">
-                {skill} <span className="remove-skill" onClick={() => removeSkill(index)}>✖</span>
-              </span>
-            </span>
+            <button class="custom-button-">
+            <span key={index} class="skill-chip">{skill}</span>
+            <span class="remove-skill" onClick={() => removeSkill(index)} >&#10005;</span>
+          </button>
           ))}
-          {isLoggedIn && selectedSkills.length > 0 && (
-            <button className="clear-skills-btn" onClick={clearSkills}>
-              Clear Skills
-            </button>
-          )}
         </div>
 
         <div className="buttons-container">
           {isLoggedIn ? (
-            <button className="add-job-btn" onClick={handleAddJob}>
+            <button className="add-job-btn" onClick={() => navigate("/add-job")}>
               + Add Job
             </button>
           ) : (

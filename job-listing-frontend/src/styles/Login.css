@@ -76,6 +76,13 @@
   margin-top: 8px;
 }
 
+.signup-link {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+
 .signup-text a {
   color: #007bff;
   text-decoration: none;
@@ -100,19 +107,3 @@
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .login-container {
-      flex-direction: column;
-      gap: 1rem;
-      height: auto;
-      padding: 2rem 0;
-  }
-  .login-form {
-      width: 90%;
-      max-width: 350px;
-  }
-  .login-image {
-      max-width: 250px;
-  }
-}

@@ -1,5 +1,6 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../config/database");
+const User = require("./user"); // Import User model
 
 const Job = sequelize.define("Job", {
   id: {
@@ -12,8 +13,8 @@ const Job = sequelize.define("Job", {
     allowNull: false,
   },
   companyLogo: {
-    type: DataTypes.TEXT, // Updated length for companyLogo
-    allowNull: true,  // Can be optional
+    type: DataTypes.TEXT,
+    allowNull: true, 
   },
   jobPosition: {
     type: DataTypes.STRING,
@@ -48,13 +49,25 @@ const Job = sequelize.define("Job", {
     allowNull: false,
   },
   skillsRequired: {
-    type: DataTypes.STRING,  // You can convert an array to a comma-separated string before storing
+    type: DataTypes.STRING,
     allowNull: false,
   },
   additionalInfo: {
     type: DataTypes.STRING,
     allowNull: true,
   },
+  userId: {  // ✅ Add userId field
+    type: DataTypes.UUID,
+    allowNull: false,
+    references: {
+      model: User, // ✅ Ensure foreign key reference
+      key: "id",
+    },
+    onDelete: "CASCADE", // ✅ Ensure cascading delete
+  }
 }, { timestamps: true });
+
+// ✅ Associate Job with User
+Job.belongsTo(User, { foreignKey: "userId" });
 
 module.exports = Job;
